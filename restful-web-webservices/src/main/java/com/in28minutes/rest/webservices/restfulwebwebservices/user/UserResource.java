@@ -30,6 +30,13 @@ public class UserResource {
 
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id){
+
+        userDaoService.deleteById(id);
+
+    }
+
     //POST /user
 
     @PostMapping("/users")
