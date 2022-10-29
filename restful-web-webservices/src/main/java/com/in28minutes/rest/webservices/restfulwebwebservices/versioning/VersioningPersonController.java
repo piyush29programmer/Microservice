@@ -26,7 +26,7 @@ public class VersioningPersonController {
         return new PersonV2(new Name("Piyush", "Kumar"));
     }
 
-    //Custom head versioning
+    //Custom head versioning - header
 
     @GetMapping(path="/person/header",headers = "X-API-Version=1")
     public PersonV1 getFirstVersionOfPersonRequestHeader(){
@@ -35,6 +35,18 @@ public class VersioningPersonController {
 
     @GetMapping(path="/person/header",headers = "X-API-Version=2")
     public PersonV2 getSecondVersionOfPersonRequestHeader(){
+        return new PersonV2(new Name("Piyush", "Kumar"));
+    }
+
+    //Media Type versioning
+    //use the same message - ("application/vnd.my_service_name.app-v1+json")
+    @GetMapping(path="/person/accept",produces = "application/vnd.my_service_name.app-v1+json")
+    public PersonV1 getFirstVersionOfPersonAcceptHeader(){
+        return new PersonV1("Piyush Kumar");
+    }
+
+    @GetMapping(path="/person/accept",produces = "application/vnd.my_service_name.app-v2+json")
+    public PersonV2 getSecondVersionOfPersonAcceptHeader(){
         return new PersonV2(new Name("Piyush", "Kumar"));
     }
 }
