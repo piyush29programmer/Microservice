@@ -12,6 +12,8 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 @RestController
 @RequestMapping("/api")
 public class UserResource {
@@ -35,7 +37,7 @@ public class UserResource {
                 throw new UserNotFoundException("id: "+id);
 
             EntityModel<User> entityModel = EntityModel.of(user);
-        WebMvcLinkBuilder link =  WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        WebMvcLinkBuilder link =  linkTo(methodOn(this.getClass()).retrieveAllUsers());
         entityModel.add(link.withRel("all-users"));
         return entityModel;
 
