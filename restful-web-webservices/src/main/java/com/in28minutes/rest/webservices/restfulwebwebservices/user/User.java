@@ -22,7 +22,7 @@ public class User {
     @JsonProperty("user_name")
     private String name;
     @Past(message = "Birth Date should be in the past")
-    @JsonProperty("Birth_date")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
